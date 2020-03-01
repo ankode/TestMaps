@@ -2,6 +2,9 @@ package com.example.testmaps;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -149,10 +152,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
 //        intent.setPackage("com.google.android.apps.maps");
 //        startActivity(intent);
-        Uri gmmIntentUri = Uri.parse("google.navigation:q="+origin+","+destination + "&mode=d");
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        mapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(mapIntent);
+        AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create(); //Read Update
+        alertDialog.setTitle("Details");
+        alertDialog.setMessage("this is my app");
+
+        alertDialog.setButton(Dialog.BUTTON_POSITIVE,"Start Navigation", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // here you can add functions
+                Uri gmmIntentUri = Uri.parse("google.navigation:q="+origin+","+destination + "&mode=d");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
+
+        alertDialog.show();
+
+
     }
 
     @Override
