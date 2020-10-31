@@ -170,13 +170,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         alertDialog.setButton(Dialog.BUTTON_POSITIVE,"Start Navigation", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-//                String originString = "origin=" + origin.latitude + "," + origin.longitude;
-//                String destinationString = "destination=" + destination.latitude + "," + destination.longitude;
-                // here you can add functions
-//                Uri gmmIntentUri = Uri.parse("google.navigation:q="+originString+","+destinationString + "&mode=d");
-//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//                mapIntent.setPackage("com.google.android.apps.maps");
-//                startActivity(mapIntent);
                 String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?saddr=%f,%f(%s)&daddr=%f,%f (%s)", origin.latitude, origin.longitude, "Home Sweet Home", destination.latitude, destination.longitude, "Where the party is at");
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 intent.setPackage("com.google.android.apps.maps");
