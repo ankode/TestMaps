@@ -72,9 +72,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(origin).title("Home").icon(BitmapDescriptorFactory
                 .defaultMarker(BitmapDescriptorFactory.HUE_RED)));
         mMap.addMarker(new MarkerOptions().position(destination).title("Kormangla").icon(BitmapDescriptorFactory
@@ -110,8 +107,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         //Run the URL formed in above step and wait for result.
-        DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute(url);
+//         DownloadTask downloadTask = new DownloadTask();
+//         downloadTask.execute(url);
+            new DownloadTask().execute(url); // HACK ALERT: if code crashes, uncomment above, and comment this.
     }
 
     private String downloadUrl(String url) throws IOException
@@ -161,7 +159,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onPolylineClick(Polyline polyline) {
         AlertDialog alertDialog = new AlertDialog.Builder(MapsActivity.this).create(); //Read Update
         alertDialog.setTitle("Details");
-        alertDialog.setMessage("Let's roll");
+        alertDialog.setMessage("Starting Navigation");
 
         alertDialog.setButton(Dialog.BUTTON_POSITIVE,"Start Navigation", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -175,6 +173,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         alertDialog.show();
 
     }
+     // Util function to decode polystring from MAP api to a LatLang object to draw line
     private List<LatLng> decodePoly(String encoded) {
         List<LatLng> poly = new ArrayList<>();
         int index = 0, len = encoded.length();
