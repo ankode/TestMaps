@@ -269,24 +269,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
 
                 }
-//            legs = parentMain.getJSONArray("routes").getJSONObject(2).getJSONArray("legs");
-//
-//                for (int i = 0; i < legs.length(); i++) {
-//                    JSONArray steps = legs.getJSONObject(i).getJSONArray("steps");
-//                    JSONObject distance = legs.getJSONObject(i).getJSONObject("distance");
-//                    JSONObject duration = legs.getJSONObject(i).getJSONObject("duration");
-//
-//                    totalDistance += Integer.parseInt(distance.getString("value"));
-//                    totalTravelTime += Integer.parseInt(duration.getString("value"));
-//
-//                    for (int j = 0; j < steps.length(); j++) {
-//                        JSONObject polyline = steps.getJSONObject(j).getJSONObject("polyline");
-//                        List<LatLng> markers = decodePoly(polyline.getString("points"));
-//                        Log.d("polyline",polyline.toString() );
-//                        mMap.addPolyline(new PolylineOptions().clickable(true).addAll(markers).width(Float.valueOf("30.0")).color(Color.YELLOW));
-//                    }
-//
-//                }
 
             } catch (JSONException e) {
                 Toast.makeText(MapsActivity.this, "WELL WE MESSED UP!", Toast.LENGTH_LONG).show();
