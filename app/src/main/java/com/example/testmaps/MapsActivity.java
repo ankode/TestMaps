@@ -257,9 +257,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     JSONObject distance = legs.getJSONObject(i).getJSONObject("distance");
                     JSONObject duration = legs.getJSONObject(i).getJSONObject("duration");
 
-//                    totalDistance += Integer.parseInt(distance.getString("value"));
-//                    totalTravelTime += Integer.parseInt(duration.getString("value"));
-
                     for (int j = 0; j < steps.length(); j++) {
                         JSONObject polyline = steps.getJSONObject(j).getJSONObject("polyline");
                         List<LatLng> markers = decodePoly(polyline.getString("points"));
@@ -270,7 +267,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
 
             } catch (JSONException e) {
-                Toast.makeText(MapsActivity.this, "WELL WE MESSED UP!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MapsActivity.this, "Couldn't draw polyline on map", Toast.LENGTH_LONG).show();
             }
             toastData(totalDistance, totalTravelTime);
         }
@@ -278,17 +275,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Simply displays a toast message containing total distance and total time required.
         public void toastData(int totalDistance, int totalTravelTime) {
             int km = 0, m = 0;
-            String displayDistance = "";
+            String displayTotalDistance = "";
 
             if (totalDistance < 1000) {
-                displayDistance = "0." + String.valueOf(totalDistance) + " km";
+                displayTotalDistance = "0." + String.valueOf(displayTotalDistance) + " km";
             } else {
                 while (totalDistance >= 1000) {
                     km++;
                     totalDistance -= 1000;
                 }
                 m = totalDistance;
-                displayDistance = String.valueOf(km) + "." + String.valueOf(m) + " km";
+                displayTotalDistance = String.valueOf(km) + "." + String.valueOf(m) + " km";
             }
 
             int min = 0, sec = 0;
@@ -304,7 +301,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 displayTravelTime = String.valueOf(min) + ":" + String.valueOf(sec) + " minutes";
             }
 
-            Toast.makeText(MapsActivity.this, "DISTANCE : " + displayDistance + "\nTRAVEL TIME : " + displayTravelTime, Toast.LENGTH_LONG).show();
+            Toast.makeText(MapsActivity.this, "DISTANCE : " + displayTotalDistance + "\nTRAVEL TIME : " + displayTravelTime, Toast.LENGTH_LONG).show();
         }
     }
 }
