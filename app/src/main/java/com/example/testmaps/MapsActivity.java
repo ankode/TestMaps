@@ -293,12 +293,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             int min = 0, sec = 0;
             String displayTravelTime = "";
-            if (totalDistance < 60)
+            int  ONE_MIN = 60;
+            
+            if (totalTravelTime < ONE_MIN)
                 displayTravelTime = "1 minute";
             else {
-                while (totalTravelTime >= 60) {
+                while (totalTravelTime >= ONE_MIN) {
                     min++;
-                    totalTravelTime -= 60;
+                    totalTravelTime -= ONE_MIN;
                 }
                 sec = totalTravelTime;
                 displayTravelTime = String.valueOf(min) + ":" + String.valueOf(sec) + " minutes";
