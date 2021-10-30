@@ -92,8 +92,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     private void getDirections(GoogleMap mMap, LatLng origin, LatLng destination, String api_key, Float inWidth, int inColor)
     {
+        //Set desired zoom level to 15
+        int zoomLevel = 15;
         //Move camera to origin
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origin, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origin, zoomLevel));
 
 
         //Forming an URL string which will return JSON as a result.
@@ -107,8 +109,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         //Run the URL formed in above step and wait for result.
-//         DownloadTask downloadTask = new DownloadTask();
-//         downloadTask.execute(url);
+        //         DownloadTask downloadTask = new DownloadTask();
+        //    downloadTask.execute(url);
             new DownloadTask().execute(url); // HACK ALERT: if code crashes, uncomment above, and comment this.
     }
 
