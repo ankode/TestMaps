@@ -278,13 +278,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         public void toastData(int totalDistance, int totalTravelTime) {
             int km = 0, m = 0;
             String displayTotalDistance = "";
+            int ONE_KM = 1000; 
 
-            if (totalDistance < 1000) {
+            if (totalDistance < ONE_KM) {
                 displayTotalDistance = "0." + String.valueOf(displayTotalDistance) + " km";
             } else {
-                while (totalDistance >= 1000) {
+                while (totalDistance >= ONE_KM) {
                     km++;
-                    totalDistance -= 1000;
+                    totalDistance -= ONE_KM;
                 }
                 m = totalDistance;
                 displayTotalDistance = String.valueOf(km) + "." + String.valueOf(m) + " km";
