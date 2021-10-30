@@ -279,7 +279,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             int km = 0, m = 0;
             String displayTotalDistance = "";
             int ONE_KM = 1000; 
-
+            /*
+             * Get string to display from total distance.
+             */
             if (totalDistance < ONE_KM) {
                 displayTotalDistance = "0." + String.valueOf(displayTotalDistance) + " km";
             } else {
@@ -295,8 +297,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String displayTravelTime = "";
             int  ONE_MIN = 60;
             
+            /*
+             * Get string to display from total time.
+             */
             if (totalTravelTime < ONE_MIN)
-                displayTravelTime = "1 minute";
+                // Print travel time in seconds if total travel time is less than one minute
+                displayTravelTime = String.valueOf(totalTravelTime) + " seconds";
             else {
                 while (totalTravelTime >= ONE_MIN) {
                     min++;
